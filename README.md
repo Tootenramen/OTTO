@@ -6,7 +6,7 @@ OTTO runs unattended AI development sessions on any project, under rules, locks,
 switch, and makes every session **prove its work** instead of claiming it. **Mission Control** is its command center.
 
 > This repository is the **overview and architecture write-up**. The source code is not published here.
-> Live site: https://tootenramen.github.io/OTTO/ · More projects: https://tootenramen.github.io
+> Live site: https://tootenramen.github.io/OTTO/ · More projects: https://github.com/Tootenramen
 
 ## Origin
 
