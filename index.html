@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>OTTO - Run AI dev sessions that prove their work</title>
+<meta name="description" content="OTTO runs unattended AI development sessions under rules, locks, a guard, a supervisor and a kill switch, and makes them prove their work.">
+<meta property="og:title" content="OTTO - a universal project automation suite">
+<meta property="og:description" content="Unattended AI dev sessions with a guard, a kill switch and a proof gate.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230b0b0d'/><circle cx='16' cy='16' r='7' fill='none' stroke='%231e88ff' stroke-width='4'/></svg>">
+<style>
+:root{--bg:#0b0b0d;--bg2:#121316;--line:#26282e;--tx:#e9ebef;--mut:#8b909a;--a:#1e88ff;--a2:#4cc9ff;--ok:#3ddc97}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 Inter,system-ui,Segoe UI,Arial,sans-serif;overflow-x:hidden}
+a{color:var(--a2);text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+nav{position:fixed;top:0;left:0;right:0;z-index:20;backdrop-filter:blur(10px);background:#0b0b0dcc;border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:56px}
+.logo{font-weight:800;letter-spacing:3px;display:flex;align-items:center;gap:10px}
+.logo i{width:18px;height:18px;border:4px solid var(--a);border-radius:50%;display:inline-block}
+nav a.b{font-size:14px;color:var(--mut);margin-left:22px}nav a.b:hover{color:var(--tx)}
+/* HERO */
+.hero{position:relative;min-height:100vh;padding-top:56px;overflow:hidden;background:radial-gradient(900px 500px at 70% 60%,#16233a55,transparent 70%),var(--bg)}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.1fr;align-items:center;min-height:calc(100vh - 56px);gap:10px}
+.kick{color:var(--a2);font:600 13px/1 ui-monospace,Consolas,monospace;letter-spacing:2px;text-transform:uppercase}
+h1{font-size:clamp(40px,6vw,76px);line-height:1.02;margin:14px 0 18px;letter-spacing:-1.5px}
+h1 em{font-style:normal;background:linear-gradient(90deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--mut);font-size:19px;max-width:520px}
+.cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+.btn{padding:13px 22px;border-radius:10px;font-weight:700;border:1px solid var(--line);color:var(--tx);background:var(--bg2)}
+.btn.p{background:var(--a);border-color:var(--a);color:#fff;box-shadow:0 0 30px #1e88ff55}
+.btn:hover{transform:translateY(-2px)}
+/* 3D scene */
+.stage{height:640px;position:relative;perspective:2400px;perspective-origin:50% 40%}
+.world{position:absolute;left:62%;top:52%;scale:.82;width:0;height:0;transform-style:preserve-3d;transform:rotateX(58deg) rotateZ(-38deg);animation:sway 9s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotateX(58deg) rotateZ(-42deg)}to{transform:rotateX(55deg) rotateZ(-34deg)}}
+.deck{position:absolute;left:-260px;top:-170px;width:520px;height:340px;transform-style:preserve-3d;background:linear-gradient(135deg,#cfd3da,#8e949f 60%,#b7bcc6);border-radius:10px;box-shadow:0 60px 80px #000a}
+.deck:after{content:"";position:absolute;left:30px;right:30px;top:90px;height:150px;border-radius:6px;background:repeating-linear-gradient(90deg,#2b2e35 0 26px,#1b1d22 26px 28px)}
+.panel{position:absolute;left:-260px;top:-510px;width:520px;height:340px;transform-origin:50% 100%;transform:rotateX(-80deg);background:#0d0e11;border:7px solid #c9ced6;border-radius:12px;display:grid;grid-template-columns:70px 1fr;overflow:hidden;box-shadow:0 0 60px #1e88ff33}
+.side{background:#08090b;border-right:1px solid var(--line);padding:14px 0;display:flex;flex-direction:column;align-items:center;gap:14px}
+.side b{width:34px;height:34px;border-radius:9px;background:#181a1f;display:block}
+.side b:nth-child(2){background:var(--a);box-shadow:0 0 18px var(--a)}
+.main{padding:22px 26px}
+.main h2{margin:0;font-size:34px;letter-spacing:-1px}
+.main small{color:var(--mut);display:block;margin:2px 0 14px;font-size:12px}
+.lane{display:flex;align-items:center;gap:10px;background:#14161b;border:1px solid var(--line);border-radius:9px;padding:9px 12px;margin:7px 0;font:12px ui-monospace,Consolas,monospace}
+.lane .d{width:9px;height:9px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok);animation:pl 1.6s infinite}
+.lane:nth-child(4) .d{animation-delay:.5s}.lane:nth-child(5) .d{animation-delay:1s;background:var(--a2);box-shadow:0 0 10px var(--a2)}
+@keyframes pl{50%{opacity:.25}}
+.lane span{margin-left:auto;color:var(--mut)}
+.cloth{position:absolute;left:-230px;top:170px;width:470px;height:360px;transform-origin:50% 0;transform:rotateX(-90deg);transform-style:preserve-3d}
+.cloth .sheet{position:absolute;inset:0;border-radius:6px 6px 40px 40px;background:linear-gradient(180deg,#363a44,#1c1f25);filter:url(#wave);overflow:hidden}
+.cloth pre{margin:0;padding:26px 28px;font:19px/1.75 ui-monospace,Consolas,monospace;color:#e3e8f2}
+.cloth .k{color:var(--a2)}.cloth .g{color:var(--ok)}.cloth .m{color:#6b7280}
+.cloth .copy{display:inline-block;background:var(--a);color:#fff;padding:5px 12px;border-radius:5px;font:700 13px Inter,sans-serif;margin:6px 0 10px}
+.cloth .folds{position:absolute;inset:0;background:
+ linear-gradient(100deg,transparent 0 12%,#ffffff12 18%,#00000066 26%,transparent 34%,#ffffff0d 46%,#0000007a 58%,transparent 66%,#ffffff10 78%,#00000066 90%);
+ mix-blend-mode:hard-light;pointer-events:none}
+.block{position:absolute;left:-270px;top:150px;width:560px;height:60px;background:#151619;transform:translateZ(-1px);border-radius:6px}
+.glow{position:absolute;left:50%;top:60%;width:60%;height:50%;transform:translate(-50%,-50%);background:radial-gradient(closest-side,#1e88ff33,transparent);filter:blur(20px)}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}.stage{height:480px;transform:scale(.7);transform-origin:50% 0}}
+/* SECTIONS */
+section{padding:96px 0;border-top:1px solid var(--line)}
+h2.t{font-size:clamp(30px,4vw,46px);letter-spacing:-1px;margin:0 0 12px}
+.sub{color:var(--mut);max-width:680px;font-size:18px;margin:0 0 40px}
+.grid{display:grid;gap:18px}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g3,.g4{grid-template-columns:1fr 1fr}}@media(max-width:560px){.g3,.g4{grid-template-columns:1fr}}
+.card{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:22px;transition:.25s}
+.card:hover{border-color:var(--a);transform:translateY(-4px);box-shadow:0 14px 40px #1e88ff22}
+.card h3{margin:0 0 6px;font-size:18px}.card p{margin:0;color:var(--mut);font-size:15px}
+.num{font:800 46px/1 Inter,sans-serif;background:linear-gradient(90deg,var(--a),var(--a2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lab{color:var(--mut);font-size:14px;margin-top:6px}
+/* pipeline */
+.pipe{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-top:10px}
+.pipe div{padding:18px 14px;text-align:center;position:relative}
+.pipe b{display:grid;place-items:center;width:54px;height:54px;margin:0 auto 12px;border-radius:50%;border:2px solid var(--a);font-weight:800;background:#0f1a2b;box-shadow:0 0 24px #1e88ff44}
+.pipe small{color:var(--mut);display:block}
+.pipe:before{content:"";position:absolute;left:10%;right:10%;top:45px;height:2px;background:repeating-linear-gradient(90deg,var(--a) 0 10px,transparent 10px 20px);animation:flow 1.2s linear infinite;opacity:.6}
+@keyframes flow{to{background-position:20px 0}}
+@media(max-width:700px){.pipe{grid-template-columns:1fr 1fr}.pipe:before{display:none}}
+.term{background:#08090b;border:1px solid var(--line);border-radius:12px;padding:22px;font:14px/1.8 ui-monospace,Consolas,monospace;overflow:auto}
+.term .p{color:var(--ok)}.term .c{color:var(--mut)}
+.cur{display:inline-block;width:9px;height:17px;background:var(--a2);vertical-align:-3px;animation:bl 1s steps(2) infinite}
+@keyframes bl{50%{opacity:0}}
+.rv{opacity:0;transform:translateY(24px);transition:.7s}.rv.in{opacity:1;transform:none}
+.gap li{color:var(--mut);margin:6px 0}
+footer{padding:50px 0;border-top:1px solid var(--line);color:var(--mut);text-align:center;font-size:14px}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><filter id="wave" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.006 0.02" numOctaves="2" seed="4" result="n"><animate attributeName="baseFrequency" dur="12s" values="0.006 0.02;0.009 0.026;0.006 0.02" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
+
+<nav><div class="wrap"><div class="logo"><i></i>OTTO</div><div><a class="b" href="#origin">Origin</a><a class="b" href="#how">How it works</a><a class="b" href="#safety">Safety</a><a class="b" href="#proof">Proof</a><a class="b" href="#start">Quick start</a><a class="b" href="https://www.linkedin.com/in/gustavo-freitas-69b93910b/" style="color:#fff;background:var(--a);padding:7px 14px;border-radius:8px;font-weight:700">Get in touch</a></div></div></nav>
+
+<header class="hero"><div class="wrap">
+ <div>
+  <div class="kick">Project automation suite</div>
+  <h1>AI that builds while you sleep, and <em>proves it</em>.</h1>
+  <p class="lead">OTTO runs unattended AI dev sessions under rules, locks, a guard, a supervisor and a kill switch, then makes every session prove its work instead of claiming it.</p>
+  <div class="cta"><a class="btn p" href="#how">See how it works</a><a class="btn" href="#start">Quick start</a></div>
+ </div>
+ <div class="stage"><div class="glow"></div>
+  <div class="world">
+   <div class="block"></div>
+   <div class="deck"></div>
+   <div class="panel"><div class="side"><b></b><b></b><b></b><b></b><b></b></div>
+    <div class="main"><h2>Mission Control</h2><small>factory board · 3 lanes live · machine ON</small>
+     <div class="lane"><i class="d"></i>CODE · lane A<span>working</span></div>
+     <div class="lane"><i class="d"></i>CODE · lane B<span>working</span></div>
+     <div class="lane"><i class="d"></i>BUILD · exactly 1<span>proving</span></div>
+     <div class="lane"><i class="d"></i>ASSET · exactly 1<span>queued</span></div></div></div>
+   <div class="cloth"><div class="sheet"><pre><span class="m"># start the machine</span>
+<span class="k">otto_ctl</span> status
+<span class="copy">Turn it ON</span>
+<span class="k">otto_ctl</span> on
+<span class="m"># every session ends with proof</span>
+<span class="g">383 / 383</span> guard decisions
+<span class="g"> 53 /  53</span> supervisor checks
+<span class="g"> 43 /  43</span> Mission Control tests</pre><div class="folds"></div></div></div>
+  </div>
+ </div>
+</div></header>
+
+<section><div class="wrap">
+ <div class="grid g4 rv">
+  <div class="card"><div class="num">109k</div><div class="lab">lines of code in 26 days, in the game OTTO came from</div></div>
+  <div class="card"><div class="num">383</div><div class="lab">guard decisions checked by the selfcheck</div></div>
+  <div class="card"><div class="num">53</div><div class="lab">supervisor recovery checks</div></div>
+  <div class="card"><div class="num">43</div><div class="lab">Mission Control tests</div></div>
+ </div>
+</div></section>
+
+<section id="origin"><div class="wrap">
+ <div class="kick">Origin story</div><h2 class="t">Born in a game. Forged by days that never ended.</h2>
+ <p class="sub rv">OTTO was not designed on a whiteboard. It was extracted from the automation behind an agent-built Unreal Engine game: about 109k lines of code in 26 days.</p>
+ <div class="grid g3 rv">
+  <div class="card"><h3>Cecilia, the factory</h3><p>The loop, supervisor and guard that ran the game's AI sessions were called Cecilia. She worked for days at a time with no end in sight, which is exactly why the guard, the kill switch and the proof gate exist.</p></div>
+  <div class="card"><h3>Mission Control, the cockpit</h3><p>A command center built to watch the factory run: who is doing what, what is waiting, what is failing and what has proof. Its home page became the OTTO factory board.</p></div>
+  <div class="card"><h3>Then made universal</h3><p>The engine, game and project names were stripped out, and Mission Control was ported by hand. What remained is OTTO: it runs on any project, not only a game.</p></div>
+ </div>
+</div></section>
+
+<section id="how"><div class="wrap">
+ <div class="kick">How it works</div><h2 class="t">How OTTO keeps an AI team honest</h2>
+ <p class="sub rv">OTTO is a control plane around the <code>claude -p</code> CLI. It does not trust agents. It gives them rules, boundaries and a way to prove they finished.</p>
+ <div class="pipe rv">
+  <div><b>1</b>Backlog<small>one markdown file</small></div>
+  <div><b>2</b>Lanes<small>READ, CODE, ASSET, BUILD</small></div>
+  <div><b>3</b>Guard<small>a hook the agent cannot skip</small></div>
+  <div><b>4</b>Handoff<small>80% work, 95% verify, restart</small></div>
+  <div><b>5</b>Proof<small>one command, one verdict</small></div>
+ </div>
+ <div class="grid g3" style="margin-top:34px">
+  <div class="card rv"><h3>Rules the agents obey</h3><p>Decide, don't ask. Six ask-first items. Stop conditions. Proof, or it didn't happen.</p></div>
+  <div class="card rv"><h3>Lanes with limits</h3><p>Unlimited READ, many CODE lanes each on its own checkout, exactly one ASSET and exactly one BUILD at a time.</p></div>
+  <div class="card rv"><h3>A structural guard</h3><p>A hook outside the agent's control enforces ownership, per-path checkouts, locks and bounded delegation, with its own regression suite.</p></div>
+  <div class="card rv"><h3>A handoff loop</h3><p>A session works to about 80% of its context, verifies to about 95%, rewrites its own handoff prompt, and restarts fresh.</p></div>
+  <div class="card rv"><h3>A kill switch</h3><p>One marker file stops the machine. Only the control command removes it, and the supervisor restores it if a worker deletes it.</p></div>
+  <div class="card rv"><h3>A proof gate</h3><p>One verification command, one verdict, one evidence folder. Cost is logged per session, with no invented prices.</p></div>
+ </div>
+</div></section>
+
+<section id="safety"><div class="wrap">
+ <div class="kick">Mission Control</div><h2 class="t">One screen for the whole factory</h2>
+ <p class="sub rv">The home page is the factory board: machine state, tasks done, workers up, gates green, and what is waiting on you. Each lane has its own character card, with a feed for Waiting, Trouble, Proof and Cost.</p>
+ <div class="grid g3 rv">
+  <div class="card"><h3>Read-only by default</h3><p>Every write to the project is a gated action with a diff, lock checks and a commit.</p></div>
+  <div class="card"><h3>Own port, own data</h3><p>Each project gets a stable port in 4720-4799 and its own data directory.</p></div>
+  <div class="card"><h3>Lite mode</h3><p>No Node? A zero-dependency, read-only, localhost-only view runs from a single file.</p></div>
+ </div>
+</div></section>
+
+<section id="proof"><div class="wrap">
+ <div class="kick">Proof, not promises</div><h2 class="t">What has been verified, and what has not</h2>
+ <p class="sub rv">OTTO is built on the idea that claims need evidence, so this page says plainly what is done and what is not.</p>
+ <div class="grid g3 rv">
+  <div class="card"><h3>Verified</h3><p>383/383 hook decisions. 53/53 supervisor recovery checks. 43/43 Mission Control tests. Fresh deploys into empty folders. Database upgrade with automatic backup.</p></div>
+  <div class="card"><h3>Not done yet</h3><ul class="gap" style="padding-left:18px;margin:0"><li>A full week of unattended operation</li><li>A POSIX port (Windows first)</li><li>Container isolation for untrusted code</li></ul></div>
+  <div class="card"><h3>Good first run</h3><p>One lane, supervised, for a few hours. Then widen it.</p></div>
+ </div>
+</div></section>
+
+<section id="start"><div class="wrap">
+ <div class="kick">Quick start</div><h2 class="t">Deploy it in one command</h2>
+ <p class="sub rv">OTTO leaves the machine OFF, never overwrites a file without -Force, and never commits, pushes or starts anything on its own.</p>
+ <div class="term rv"><span class="c"># deploy into a project (dry run available with -DryRun)</span><br>
+ <span class="p">PS&gt;</span> powershell -ExecutionPolicy Bypass -File otto_init.ps1 -Target C:\code\myapp -Profile node-web<br><br>
+ <span class="c"># check the machine, then turn it on</span><br>
+ <span class="p">PS&gt;</span> Tools\otto_ctl.ps1 status<br>
+ <span class="p">PS&gt;</span> Tools\otto_ctl.ps1 on<br><br>
+ <span class="c"># open Mission Control</span><br>
+ <span class="p">PS&gt;</span> npm install ; npm run build:web ; npm start <span class="cur"></span></div>
+</div></section>
+
+<section id="more"><div class="wrap">
+ <div class="kick">More projects</div><h2 class="t">Other things I've built</h2>
+ <div class="grid g3 rv">
+  <a class="card" href="https://github.com/Tootenramen/NeatBook-Toolkit"><h3>NeatBook Toolkit &rarr;</h3><p>A browser extension for security analysts: investigation quick-links and everyday tools in one place.</p></a>
+  <a class="card" href="https://tootenramen.github.io/ResumeAI/"><h3>ResumeAI &rarr;</h3><p>29 animated resume websites you can personalize in one click. Try the live demo.</p></a>
+  <a class="card" href="https://tootenramen.github.io"><h3>All projects &rarr;</h3><p>The full portfolio: OTTO, NeatBook, ResumeAI and more.</p></a>
+ </div>
+</div></section>
+
+<footer><div class="wrap">OTTO · built by <a href="https://github.com/Tootenramen">Tootenramen</a> · <a href="https://www.linkedin.com/in/gustavo-freitas-69b93910b/">Get in touch on LinkedIn</a></div></footer>
+<script>
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+</script>
+</body></html>

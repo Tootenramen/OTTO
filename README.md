@@ -1,10 +1,12 @@
+[![OTTO](docs/hero.png)](https://tootenramen.github.io/OTTO/)
+
 # OTTO - a universal project automation suite
 
 OTTO runs unattended AI development sessions on any project, under rules, locks, a guard, a supervisor and a kill
 switch, and makes every session **prove its work** instead of claiming it. **Mission Control** is its command center.
 
 > This repository is the **overview and architecture write-up**. The source code is not published here.
-> Site: https://tootenramen.github.io
+> Live site: https://tootenramen.github.io/OTTO/ · More projects: https://tootenramen.github.io
 
 ## Origin
 
