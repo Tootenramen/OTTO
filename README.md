@@ -9,7 +9,7 @@ switch, and makes every session **prove its work** instead of claiming it. **Mis
 ## Origin
 
 OTTO was not designed on a whiteboard. It was extracted from the automation behind an **agent-built Unreal Engine
-game** - about 109k lines of code in 26 days. The factory that ran those sessions, called **Cecelia**, worked for
+game** - about 109k lines of code in 26 days. The factory that ran those sessions, called **Cecilia**, worked for
 days at a time with no end in sight, and **Mission Control** was built to watch her run. Every safety feature below
 exists because long unattended runs need it. The engine, game and project names were then removed so OTTO runs on any
 project, not only a game.
