@@ -136,6 +136,23 @@ footer{padding:50px 0;border-top:1px solid var(--line);color:var(--mut);text-ali
  </div>
 </div></section>
 
+<section id="see"><div class="wrap">
+ <div class="kick">See it run</div><h2 class="t">Real recordings, not mock-ups</h2>
+ <p style="max-width:70ch">Recorded from OTTO running in a synthetic demo project (invented work, real OTTO files).</p>
+ <img src="docs/mc-board.gif" alt="Mission Control factory board, live" style="width:100%;border-radius:12px;margin:18px 0">
+ <img src="docs/mc-tour.gif" alt="A tour of Mission Control" style="width:100%;border-radius:12px;margin:18px 0">
+ <img src="docs/mc/dark-otto.png" alt="The CECELIA MC live view" style="width:100%;border-radius:12px;margin:18px 0">
+ <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px">
+  <img src="docs/term-selfcheck.gif" alt="383 decisions checked" style="width:100%;border-radius:12px">
+  <img src="docs/term-supervisor.gif" alt="53 supervisor checks" style="width:100%;border-radius:12px">
+ </div>
+ <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-top:16px">
+  <img src="docs/mc/light-decisions.png" alt="Decisions" style="width:100%;border-radius:12px">
+  <img src="docs/mc/light-verification.png" alt="Verification" style="width:100%;border-radius:12px">
+  <img src="docs/mc/dark-git.png" alt="Git and changes" style="width:100%;border-radius:12px">
+  <img src="docs/mc/dark-activity.png" alt="Live activity" style="width:100%;border-radius:12px">
+ </div>
+</div></section>
 <section id="how"><div class="wrap">
  <div class="kick">How it works</div><h2 class="t">How OTTO keeps an AI team honest</h2>
  <p class="sub rv">OTTO is a control plane around the <code>claude -p</code> CLI. It does not trust agents. It gives them rules, boundaries and a way to prove they finished.</p>
