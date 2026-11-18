@@ -22,9 +22,9 @@ with Waiting, Trouble, Proof and Cost tabs. Light and dark.*
 
 *A tour: Overview, Otto, Live Activity, Decisions, Journal, Git and Verification.*
 
-## Cecilia, live
+## Cecelia, live
 
-The factory that runs the sessions is called **Cecilia**. Mission Control's **Otto** view is her live console:
+The factory that runs the sessions is called **Cecelia**. Mission Control's **Otto** view is her live console:
 which lane is working, how full each context window is, who holds which checkout, what the supervisor sees, and what has
 gone wrong.
 
@@ -71,7 +71,7 @@ another lane's file, no checkout, the control plane, removing the stop marker.*
 ## Origin
 
 OTTO was extracted from the automation behind an **agent-built Unreal Engine game** - about 109k lines of code in 26
-days. The factory that ran those sessions, **Cecilia**, worked for days at a time with no end in sight, and Mission
+days. The factory that ran those sessions, **Cecelia**, worked for days at a time with no end in sight, and Mission
 Control was built to watch her run. Every safety feature exists because long unattended runs need it. The engine, game
 and project names were then removed so OTTO runs on any project.
 
