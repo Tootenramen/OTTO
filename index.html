@@ -134,11 +134,11 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding:30px 24px 50px;c
 
  <nav class="top al d100">
   <a class="logo" href="#top" aria-label="OTTO home"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="3" y="5" width="20" height="15" rx="5" stroke="#fff" stroke-width="2"/><circle cx="9.5" cy="12.5" r="2.2" fill="#fff"/><circle cx="16.5" cy="12.5" r="2.2" fill="#fff"/><path d="M13 5V2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>OTTO</a>
-  <div class="links"><a href="#live">Live</a><a href="#night">A night</a><a href="#floor">Guard</a><a href="#mc">Mission Control</a><a href="#how">How it works</a><a href="#proof">Proof</a><a href="#origin">Origin</a></div>
+  <div class="links"><a href="#origin">Origin</a><a href="#proof">Proof</a><a href="#live">Live</a><a href="#night">A night</a><a href="#mc">Mission Control</a><a href="#how">How it works</a></div>
   <div class="act"><a class="l" href="https://github.com/Tootenramen/OTTO">GitHub</a><a class="pill-w" href="#live">Watch it run</a></div>
   <button class="burger" id="bg" aria-label="Menu" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
  </nav>
- <div class="ov" id="ov"><a href="#live">Live</a><a href="#night">A night</a><a href="#floor">Guard</a><a href="#mc">Mission Control</a><a href="#how">How it works</a><a href="#proof">Proof</a><a href="https://github.com/Tootenramen/OTTO">GitHub</a></div>
+ <div class="ov" id="ov"><a href="#origin">Origin</a><a href="#proof">Proof</a><a href="#live">Live</a><a href="#night">A night</a><a href="#mc">Mission Control</a><a href="#how">How it works</a><a href="https://github.com/Tootenramen/OTTO">GitHub</a></div>
 
  <div class="mid" id="top">
   <div class="vp al d200"><b>New</b><span>Mission Control + CECELIA inside</span></div>
@@ -161,6 +161,32 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding:30px 24px 50px;c
 </header>
 
 <main>
+<section class="s" id="origin"><div class="wrap">
+ <div class="kick">Origin story</div><h2>Born in a game. <em>Forged by days that never ended.</em></h2>
+ <p class="lead">OTTO was extracted from the automation behind an agent-built Unreal Engine game: about 109k lines of code in 26 days. Cecelia ran those sessions for days at a time, and Mission Control was built to watch her. Every safety feature exists because a long unattended run needed it. Then the game's names came out so OTTO runs on any project.</p>
+ <div class="btnrow"><a class="btn" href="https://github.com/Tootenramen/OTTO">Read the overview on GitHub</a><a class="btn g" href="https://github.com/Tootenramen">More projects: FR33, POWER, FAST</a></div>
+</div></section>
+
+<section class="s" id="proof"><div class="wrap">
+ <div class="kick">Proof, not promises</div><h2>Real runs. <em>Real numbers.</em></h2>
+ <p class="lead">These two are real, unedited recordings of OTTO's own test suites, run in a synthetic demo project (acme-checkout: invented work, real OTTO files).</p>
+ <div class="two" style="margin-top:28px">
+  <div class="frame"><div class="bar"><s></s><s></s><s></s>&nbsp; selfcheck</div><img loading="lazy" src="docs/term-selfcheck.gif" alt="383 decisions checked"></div>
+  <div class="frame"><div class="bar"><s></s><s></s><s></s>&nbsp; supervisor test</div><img loading="lazy" src="docs/term-supervisor.gif" alt="53 supervisor checks"></div>
+ </div>
+ <div class="card" style="margin-top:24px;padding:10px 12px"><table>
+  <tr><th>Check</th><th>Result</th></tr>
+  <tr><td>Hook decisions (guard, stop, pretool, subagent, profile, cost)</td><td class="ok">383 / 383</td></tr>
+  <tr><td>Supervisor recovery (relaunch, backoff, quarantine, markers, usage-limit waits)</td><td class="ok">53 / 53</td></tr>
+  <tr><td>Deploy into empty folders; dry run writes nothing; proof passes in the target</td><td class="ok">verified</td></tr>
+  <tr><td>Mission Control in a fresh project: type-check, build, tests</td><td class="ok">43 / 43</td></tr>
+  <tr><td>Database upgrade on an existing database, with automatic backup</td><td class="ok">verified</td></tr>
+  <tr><td>A week of unattended operation of this exact tree</td><td class="no">not done</td></tr>
+ </table></div>
+ <h2 style="margin-top:56px;font-size:30px">Things OTTO <em>won't pretend.</em></h2>
+ <ul class="gaps"><li>Never run unattended for a week. The first real run should be one lane, supervised, for a few hours.</li><li>No container isolation. Workers run with permissions bypassed on the host, protected by the hooks.</li><li>Windows-first. The control plane is PowerShell and bash; a POSIX port is the biggest missing piece.</li><li>The <span class="mono">claude -p</span> CLI is the only worker runtime.</li><li>Task intake is one markdown backlog, not a ticket board. No agent-quality baseline beyond cost.</li></ul>
+</div></section>
+
 
 <section class="s" id="live"><div class="wrap">
  <div class="kick">Running right now</div><h2>Three terminals. <em>Zero hand-waving.</em></h2>
@@ -230,31 +256,7 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding:30px 24px 50px;c
  </div>
 </div></section>
 
-<section class="s" id="proof"><div class="wrap">
- <div class="kick">Proof, not promises</div><h2>Real runs. <em>Real numbers.</em></h2>
- <p class="lead">These two are real, unedited recordings of OTTO's own test suites, run in a synthetic demo project (acme-checkout: invented work, real OTTO files).</p>
- <div class="two" style="margin-top:28px">
-  <div class="frame"><div class="bar"><s></s><s></s><s></s>&nbsp; selfcheck</div><img loading="lazy" src="docs/term-selfcheck.gif" alt="383 decisions checked"></div>
-  <div class="frame"><div class="bar"><s></s><s></s><s></s>&nbsp; supervisor test</div><img loading="lazy" src="docs/term-supervisor.gif" alt="53 supervisor checks"></div>
- </div>
- <div class="card" style="margin-top:24px;padding:10px 12px"><table>
-  <tr><th>Check</th><th>Result</th></tr>
-  <tr><td>Hook decisions (guard, stop, pretool, subagent, profile, cost)</td><td class="ok">383 / 383</td></tr>
-  <tr><td>Supervisor recovery (relaunch, backoff, quarantine, markers, usage-limit waits)</td><td class="ok">53 / 53</td></tr>
-  <tr><td>Deploy into empty folders; dry run writes nothing; proof passes in the target</td><td class="ok">verified</td></tr>
-  <tr><td>Mission Control in a fresh project: type-check, build, tests</td><td class="ok">43 / 43</td></tr>
-  <tr><td>Database upgrade on an existing database, with automatic backup</td><td class="ok">verified</td></tr>
-  <tr><td>A week of unattended operation of this exact tree</td><td class="no">not done</td></tr>
- </table></div>
- <h2 style="margin-top:56px;font-size:30px">Things OTTO <em>won't pretend.</em></h2>
- <ul class="gaps"><li>Never run unattended for a week. The first real run should be one lane, supervised, for a few hours.</li><li>No container isolation. Workers run with permissions bypassed on the host, protected by the hooks.</li><li>Windows-first. The control plane is PowerShell and bash; a POSIX port is the biggest missing piece.</li><li>The <span class="mono">claude -p</span> CLI is the only worker runtime.</li><li>Task intake is one markdown backlog, not a ticket board. No agent-quality baseline beyond cost.</li></ul>
-</div></section>
 
-<section class="s" id="origin"><div class="wrap">
- <div class="kick">Origin story</div><h2>Born in a game. <em>Forged by days that never ended.</em></h2>
- <p class="lead">OTTO was extracted from the automation behind an agent-built Unreal Engine game: about 109k lines of code in 26 days. Cecelia ran those sessions for days at a time, and Mission Control was built to watch her. Every safety feature exists because a long unattended run needed it. Then the game's names came out so OTTO runs on any project.</p>
- <div class="btnrow"><a class="btn" href="https://github.com/Tootenramen/OTTO">Read the overview on GitHub</a><a class="btn g" href="https://github.com/Tootenramen">More projects: FR33, POWER, FAST</a></div>
-</div></section>
 </main>
 <footer>This site is the overview; the source isn't published. Built by <a href="https://www.linkedin.com/in/gustavo-freitas-69b93910b/">Gustavo Freitas</a> · <a href="https://github.com/Tootenramen">more projects</a></footer>
 
