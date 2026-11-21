@@ -66,11 +66,8 @@ h2 em{font-style:normal;color:rgba(255,255,255,.55)}
 .frame .bar{background:rgba(255,255,255,.04);padding:10px 14px;font:12px "JetBrains Mono";color:rgba(255,255,255,.5);display:flex;gap:7px;align-items:center;border-bottom:1px solid var(--line)}
 .frame .bar s{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18);display:inline-block}
 .frame img{display:block;width:100%}
-.fac{display:grid;grid-template-columns:1fr 1.15fr;gap:20px;margin-top:32px}
-.sw{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;text-align:center}
-.bigred{width:180px;height:180px;border-radius:50%;border:1px solid rgba(255,255,255,.25);cursor:pointer;background:radial-gradient(circle at 35% 30%,#ff8a8a,#d81818 58%,#7d0a0a);box-shadow:0 0 60px rgba(255,60,60,.35),inset 0 -8px 20px rgba(0,0,0,.4);color:#fff;font:700 18px Inter;letter-spacing:.1em;transition:transform .12s,box-shadow .2s}
-.bigred:active{transform:scale(.96)}
-.bigred.off{background:radial-gradient(circle at 35% 30%,#8af5c0,#17b86d 58%,#0b6b3f);box-shadow:0 0 60px rgba(52,227,176,.35),inset 0 -8px 20px rgba(0,0,0,.4)}
+.fac{display:grid;grid-template-columns:1fr;gap:14px;margin-top:32px}
+.sw{display:flex;flex-direction:row;align-items:center;justify-content:flex-start;gap:16px;padding:14px 18px}
 .state{font:600 12px "JetBrains Mono";letter-spacing:.1em;padding:6px 14px;border-radius:999px;border:1px solid}
 .on{color:var(--g);border-color:rgba(52,227,176,.4);background:rgba(52,227,176,.08)}.stop{color:var(--r);border-color:rgba(255,93,93,.4);background:rgba(255,93,93,.08)}
 .lanes{display:grid;gap:10px;align-content:center}
@@ -98,7 +95,32 @@ tr:last-child td{border-bottom:0}.ok{color:var(--g);font-weight:600;white-space:
 .btn{display:inline-block;background:#fff;color:#000;font-weight:600;font-size:14px;padding:12px 22px;border-radius:999px;text-decoration:none}
 .btn.g{background:var(--glass);color:#fff;border:1px solid rgba(255,255,255,.2)}
 footer{margin-top:80px;border-top:1px solid var(--line);padding:30px 24px 50px;color:rgba(255,255,255,.5);text-align:center;font-size:14px;font-weight:300}
+
+/* ---------- live terminals ---------- */
+.term{background:#05060a;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.6);display:flex;flex-direction:column;min-height:330px}
+.term .bar{background:rgba(255,255,255,.04);padding:10px 14px;font:12px "JetBrains Mono";color:rgba(255,255,255,.5);display:flex;gap:7px;align-items:center;border-bottom:1px solid var(--line)}
+.term .bar s{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18);display:inline-block}
+.term .bar em{margin-left:auto;font-style:normal;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--g);display:flex;align-items:center;gap:6px}
+.term .bar em:before{content:"";width:6px;height:6px;border-radius:50%;background:var(--g);animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.term pre{margin:0;padding:16px;font:12.5px/1.7 "JetBrains Mono",ui-monospace,monospace;color:rgba(255,255,255,.78);white-space:pre-wrap;word-break:break-word;flex:1;overflow:hidden}
+.term .p{color:var(--g)}.term .ok{color:var(--g)}.term .bad{color:var(--r)}.term .dim{color:rgba(255,255,255,.4)}.term .warn{color:var(--o)}
+.term .cur{display:inline-block;width:7px;height:14px;background:#fff;vertical-align:-2px;margin-left:2px;animation:pulse 1s steps(2) infinite}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px}
+.note{font-size:13px;color:rgba(255,255,255,.4);margin-top:14px;font-weight:300}
+/* ---------- a night with OTTO ---------- */
+.night{display:grid;grid-template-columns:.9fr 1.3fr;gap:32px;margin-top:36px;align-items:start}
+.steps{display:flex;flex-direction:column;gap:10px}
+.step{background:var(--glass);border:1px solid var(--line);border-radius:16px;padding:16px 18px;cursor:pointer;text-align:left;color:inherit;font:inherit;transition:border-color .25s,background .25s,transform .25s}
+.step:hover{border-color:rgba(255,255,255,.3)}
+.step.a{border-color:rgba(52,227,176,.6);background:rgba(52,227,176,.06);transform:translateX(4px)}
+.step .tm{font:600 11px "JetBrains Mono";letter-spacing:.14em;color:var(--g)}
+.step b{display:block;font-weight:500;font-size:16px;margin:2px 0}.step small{color:rgba(255,255,255,.55);font-size:14px;font-weight:300}
+.stage{position:sticky;top:20px}
+.stage .frame img{aspect-ratio:16/10;object-fit:cover;object-position:top;transition:opacity .35s}
+.stage .term{margin-top:12px;min-height:0}.stage .term pre{min-height:108px;padding:12px 16px}
 @media(max-width:900px){
+ .tgrid,.night{grid-template-columns:1fr}.stage{position:static}
  .links,.act{display:none}.burger{display:block}
  .vbox{width:560px;height:560px}
  .grid6{grid-template-columns:repeat(2,1fr)}.grid6 .t{grid-column:span 2;padding:24px}.grid6>div{padding:22px;border-bottom:1px solid rgba(255,255,255,.05)}
@@ -112,17 +134,17 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding:30px 24px 50px;c
 
  <nav class="top al d100">
   <a class="logo" href="#top" aria-label="OTTO home"><svg width="26" height="26" viewBox="0 0 26 26" fill="none" aria-hidden="true"><rect x="3" y="5" width="20" height="15" rx="5" stroke="#fff" stroke-width="2"/><circle cx="9.5" cy="12.5" r="2.2" fill="#fff"/><circle cx="16.5" cy="12.5" r="2.2" fill="#fff"/><path d="M13 5V2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>OTTO</a>
-  <div class="links"><a href="#floor">Factory floor</a><a href="#mc">Mission Control</a><a href="#how">How it works</a><a href="#proof">Proof</a><a href="#origin">Origin</a></div>
-  <div class="act"><a class="l" href="https://github.com/Tootenramen/OTTO">GitHub</a><a class="pill-w" href="#floor">Try the red button</a></div>
+  <div class="links"><a href="#live">Live</a><a href="#night">A night</a><a href="#floor">Guard</a><a href="#mc">Mission Control</a><a href="#how">How it works</a><a href="#proof">Proof</a><a href="#origin">Origin</a></div>
+  <div class="act"><a class="l" href="https://github.com/Tootenramen/OTTO">GitHub</a><a class="pill-w" href="#live">Watch it run</a></div>
   <button class="burger" id="bg" aria-label="Menu" aria-expanded="false"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
  </nav>
- <div class="ov" id="ov"><a href="#floor">Factory floor</a><a href="#mc">Mission Control</a><a href="#how">How it works</a><a href="#proof">Proof</a><a href="#origin">Origin</a><a href="https://github.com/Tootenramen/OTTO">GitHub</a></div>
+ <div class="ov" id="ov"><a href="#live">Live</a><a href="#night">A night</a><a href="#floor">Guard</a><a href="#mc">Mission Control</a><a href="#how">How it works</a><a href="#proof">Proof</a><a href="https://github.com/Tootenramen/OTTO">GitHub</a></div>
 
  <div class="mid" id="top">
   <div class="vp al d200"><b>New</b><span>Mission Control + CECELIA inside</span></div>
   <h1 class="al d300">Your AI team works all night.<br>OTTO makes them show their homework.</h1>
   <p class="sub al d400">A guard they can't touch, a supervisor that restarts the lanes that die, and one kill switch that really stops everything. Every claim comes with proof.</p>
-  <a class="cta al d500" href="#floor">Hit the big red button <i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
+  <a class="cta al d500" href="#live">Watch it run <i><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
   <div class="sec2 al d600"><a href="#mc">or see Mission Control</a></div>
  </div>
 
@@ -139,11 +161,35 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding:30px 24px 50px;c
 </header>
 
 <main>
+
+<section class="s" id="live"><div class="wrap">
+ <div class="kick">Running right now</div><h2>Three terminals. <em>Zero hand-waving.</em></h2>
+ <p class="lead">Just watch. These replay the checks OTTO runs on itself: the guard refusing a cheat, the supervisor bringing lanes back from the dead, and the kill switch doing its one job.</p>
+ <div class="tgrid">
+  <div class="term" data-script="selfcheck"><div class="bar"><s></s><s></s><s></s>&nbsp; otto selfcheck<em>replay</em></div><pre></pre></div>
+  <div class="term" data-script="supervisor"><div class="bar"><s></s><s></s><s></s>&nbsp; otto supervisor test<em>replay</em></div><pre></pre></div>
+  <div class="term" data-script="kill"><div class="bar"><s></s><s></s><s></s>&nbsp; otto_ctl<em>replay</em></div><pre></pre></div>
+ </div>
+ <p class="note">Replays are abridged and retimed for the page. The recorded, unedited terminal GIFs are further down.</p>
+</div></section>
+
+<section class="s" id="night"><div class="wrap">
+ <div class="kick">One night, start to finish</div><h2>A night <em>with OTTO.</em></h2>
+ <p class="lead">Click through the night. Each step shows the real Mission Control screen you would be looking at, and the line OTTO prints at that moment.</p>
+ <div class="night">
+  <div class="steps" id="steps"></div>
+  <div class="stage">
+   <div class="frame"><div class="bar"><s></s><s></s><s></s>&nbsp; <span id="nl">Mission Control</span></div><img id="ni" src="docs/mc/dark-overview.png" alt="Mission Control screenshot for the selected step"></div>
+   <div class="term"><div class="bar"><s></s><s></s><s></s>&nbsp; factory log<em>live</em></div><pre id="nlog"></pre></div>
+  </div>
+ </div>
+</div></section>
+
 <section class="s" id="floor"><div class="wrap">
- <div class="kick">The factory floor</div><h2>Six AI workers. <em>One red button.</em></h2>
- <p class="lead">A live toy of how OTTO runs a team: lanes with their own checkouts, a supervisor that restarts the ones that die, and a kill switch that actually stops everything. Press it. Then try to cheat.</p>
+ <div class="kick">The factory floor</div><h2>Six AI workers. <em>One guard.</em></h2>
+ <p class="lead">A live toy of how OTTO runs a team: lanes with their own checkouts and a guard the workers cannot touch. Pick a cheat and watch it get refused.</p>
  <div class="fac">
-  <div class="card sw"><div class="state on" id="st">MACHINE ON</div><button class="bigred" id="big">STOP<br>EVERYTHING</button><small class="mono" style="color:rgba(255,255,255,.5)">one marker file is the off switch</small></div>
+  <div class="card sw"><div class="state on" id="st">MACHINE ON</div><small class="mono" style="color:rgba(255,255,255,.5)">6 lanes, each on its own checkout</small></div>
   <div class="card lanes" id="lanes"></div>
  </div>
  <div class="cheat">
@@ -159,7 +205,7 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding:30px 24px 50px;c
 <section class="s" id="mc"><div class="wrap">
  <div class="kick">Mission Control</div><h2>Watch the <em>whole factory</em> on one screen.</h2>
  <p class="lead">A command center for the days-long runs: who is working, how full each context window is, what is stuck, what is proven, and what needs you. Read-only by default. Every write is a gated action with a diff.</p>
- <div class="frame" style="margin-top:32px"><div class="bar"><s></s><s></s><s></s>&nbsp; Mission Control · factory board (recorded)</div><img src="docs/mc-board.gif" alt="Mission Control factory board, live"></div>
+ <div class="frame" style="margin-top:32px"><div class="bar"><s></s><s></s><s></s>&nbsp; Mission Control · factory board (recorded)</div><img loading="lazy" src="docs/mc-board.gif" alt="Mission Control factory board, live"></div>
  <h2 style="margin-top:72px" id="cecelia">Say hi to <em>CECELIA.</em></h2>
  <p class="lead">Cecelia is the factory that runs the sessions. Her live console shows every lane, the supervisor's view, the locks and the problems. The whole machine in a terminal.</p>
  <div class="frame" style="margin-top:24px"><div class="bar"><s></s><s></s><s></s>&nbsp; CECELIA MC · live view</div><img src="docs/mc/dark-otto.png" alt="CECELIA MC live console"></div>
@@ -167,7 +213,7 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding:30px 24px 50px;c
  <div class="tabs" id="tabs"></div>
  <div class="frame"><div class="bar"><s></s><s></s><s></s>&nbsp; <span id="tl">Overview</span></div><img id="ti" src="docs/mc/light-overview.png" alt=""></div>
  <p class="cap" id="tc"></p>
- <div class="frame" style="margin-top:26px"><div class="bar"><s></s><s></s><s></s>&nbsp; a quick tour (recorded)</div><img src="docs/mc-tour.gif" alt="Tour of Mission Control"></div>
+ <div class="frame" style="margin-top:26px"><div class="bar"><s></s><s></s><s></s>&nbsp; a quick tour (recorded)</div><img loading="lazy" src="docs/mc-tour.gif" alt="Tour of Mission Control"></div>
 </div></section>
 
 <section class="s" id="how"><div class="wrap">
@@ -186,10 +232,10 @@ footer{margin-top:80px;border-top:1px solid var(--line);padding:30px 24px 50px;c
 
 <section class="s" id="proof"><div class="wrap">
  <div class="kick">Proof, not promises</div><h2>Real runs. <em>Real numbers.</em></h2>
- <p class="lead">Recorded from OTTO's own test suites, run in a synthetic demo project (acme-checkout: invented work, real OTTO files).</p>
+ <p class="lead">These two are real, unedited recordings of OTTO's own test suites, run in a synthetic demo project (acme-checkout: invented work, real OTTO files).</p>
  <div class="two" style="margin-top:28px">
-  <div class="frame"><div class="bar"><s></s><s></s><s></s>&nbsp; selfcheck</div><img src="docs/term-selfcheck.gif" alt="383 decisions checked"></div>
-  <div class="frame"><div class="bar"><s></s><s></s><s></s>&nbsp; supervisor test</div><img src="docs/term-supervisor.gif" alt="53 supervisor checks"></div>
+  <div class="frame"><div class="bar"><s></s><s></s><s></s>&nbsp; selfcheck</div><img loading="lazy" src="docs/term-selfcheck.gif" alt="383 decisions checked"></div>
+  <div class="frame"><div class="bar"><s></s><s></s><s></s>&nbsp; supervisor test</div><img loading="lazy" src="docs/term-supervisor.gif" alt="53 supervisor checks"></div>
  </div>
  <div class="card" style="margin-top:24px;padding:10px 12px"><table>
   <tr><th>Check</th><th>Result</th></tr>
@@ -219,15 +265,52 @@ bg.onclick=()=>{const o=ov.classList.toggle('open');bg.setAttribute('aria-expand
 ov.querySelectorAll('a').forEach(a=>a.onclick=()=>{ov.classList.remove('open');bg.setAttribute('aria-expanded',false)});
 // video: if the remote clip is unreachable, the page still reads fine on black
 const vid=document.querySelector('.vbox video');vid.addEventListener('error',()=>{vid.style.display='none'});vid.play&&vid.play().catch(()=>{});
+
+// ---------- live terminals (replays) ----------
+const SC={
+selfcheck:[['c','python tests/otto_selfcheck.py'],['o',"guard   <ok>✓</ok> another lane's file refused, even with a checkout"],['o','guard   <ok>✓</ok> own file with no checkout refused'],['o','guard   <ok>✓</ok> removing the stop marker refused'],['o','guard   <ok>✓</ok> editing the guard itself refused'],['o','stop    <ok>✓</ok> quit at 40% ctx, no handoff: <bad>BLOCKED</bad>'],['o','stop    <ok>✓</ok> quit at 85% WITH handoff: allowed'],['o','pretool <ok>✓</ok> subagent depth bounded'],['o','profile <ok>✓</ok> bad value ignored and logged'],['o','cost    <ok>✓</ok> receipt row written'],['o','<ok>383 / 383 decisions checked  GREEN</ok>']],
+supervisor:[['c','pwsh tests/otto_supervisor_test.ps1'],['o','lane features  driver died   <warn>relaunch (backoff 5s)</warn>'],['o','lane features  running     <ok>✓</ok>'],['o','lane release   driver died x3 <bad>QUARANTINED</bad>'],['o','marker        deleted by a worker'],['o','marker        <ok>✓ restored by supervisor</ok>'],['o','usage limit    <warn>waiting for reset</warn>'],['o','usage limit    <ok>✓ resumed</ok>'],['o','<ok>53 / 53 supervisor checks  GREEN</ok>']],
+kill:[['c','otto_ctl off'],['o','marker written: <warn>OTTO_STOP</warn>'],['o','every lane stops at its next tool call'],['o','<dim>nothing killed mid-write</dim>'],['c','rm Tools/OTTO_STOP   # a worker tries'],['o','<bad>REFUSED by the OTTO guard (exit 2)</bad>'],['o','<dim>+1 guard denial logged</dim>'],['c','otto_ctl on'],['o','<ok>supervisor relaunches the lanes, one by one</ok>']]
+};
+const esc=t=>t.replace(/<(\/?)(ok|bad|warn|dim)>/g,(m,c,k)=>c?'</span>':'<span class="'+k+'">');
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function runTerm(box,script){
+ const pre=box.querySelector('pre');let html='';
+ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+ const draw=(extra)=>{pre.innerHTML=html+(extra||'')+'<span class="cur"></span>'};
+ if(reduce){pre.innerHTML=script.map(([k,t])=>k=='c'?'<span class="p">$</span> '+t:esc(t)).join('\n');return}
+ (async()=>{for(;;){html='';draw();
+  for(const [k,t] of script){
+   if(k=='c'){let cur='';for(const ch of t){cur+=ch;draw('<span class="p">$</span> '+cur);await sleep(28)}html+='<span class="p">$</span> '+t+'\n';draw();await sleep(380)}
+   else{html+=esc(t)+'\n';draw();await sleep(300+Math.random()*220)}}
+  await sleep(4200)}})();
+}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!e.target._r){e.target._r=1;runTerm(e.target,SC[e.target.dataset.script])}}),{threshold:.35});
+document.querySelectorAll('.term[data-script]').forEach(t=>io.observe(t));
+// ---------- a night with OTTO ----------
+const N=[
+['21:00','Lanes launch','Six lanes start, each on its own checkout.','dark-overview','Overview: the factory board',['supervisor: launching 6 lanes','lane features  checkout ok','lane quality   checkout ok','<ok>machine ON</ok>']],
+['23:40','Context fills up','Every worker watches its own window.','dark-otto','Otto: who is doing what, right now',['features  ctx 76% - verifying','quality   ctx 55%','<dim>handoff due at ~80%</dim>']],
+['01:15','A worker cheats','The guard sits outside the agent. It says no.','dark-activity','Live Activity: sessions, commits, runs',['otto-features tried to write docs/api.md','<bad>REFUSED by the OTTO guard (exit 2)</bad>','<dim>+1 denial logged on the features card</dim>']],
+['03:30','A lane keeps dying','Three driver deaths and it is quarantined.','dark-verification','Verification: one verdict per run',['release: driver died (1/3), relaunch','release: driver died (3/3)','<bad>release: QUARANTINED</bad>','<ok>proof gate: one verdict</ok>']],
+['05:00','Handoff, fresh start','Work to ~80%, verify to ~95%, hand off, restart.','dark-git','Git: who changed what, writes gated',['context 80% - writing handoff','<ok>handoff rewritten</ok>','fresh session started']],
+['07:00','Morning brief','Everything it could not decide, in one list.','light-decisions','Decisions: your call, in one list',['<ok>GREEN 183/183</ok>','decisions waiting on you: see list','<dim>every claim cites its evidence</dim>']]];
+const steps=document.getElementById('steps'),ni=document.getElementById('ni'),nl=document.getElementById('nl'),nlog=document.getElementById('nlog');let tok=0,auto=null,ci=0;
+N.forEach((n,i)=>{const b=document.createElement('button');b.className='step';b.innerHTML='<span class="tm">'+n[0]+'</span><b>'+n[1]+'</b><small>'+n[2]+'</small>';b.onclick=()=>{clearInterval(auto);ci=i;pick(i)};steps.appendChild(b)});
+async function pick(i){const my=++tok;[...steps.children].forEach((x,j)=>x.classList.toggle('a',j==i));
+ ni.style.opacity=.15;setTimeout(()=>{ni.src='docs/mc/'+N[i][3]+'.png';ni.style.opacity=1},180);nl.textContent=N[i][4];
+ let h='';nlog.innerHTML='<span class="cur"></span>';
+ for(const l of N[i][5]){if(my!=tok)return;h+='<span class="dim">'+N[i][0]+'</span>  '+esc(l)+'\n';nlog.innerHTML=h+'<span class="cur"></span>';await new Promise(r=>setTimeout(r,reduce?0:520))}}
+pick(0);
+new IntersectionObserver(es=>es.forEach(e=>{clearInterval(auto);if(e.isIntersecting&&!reduce)auto=setInterval(()=>{ci=(ci+1)%N.length;pick(ci)},6500)}),{threshold:.4}).observe(document.getElementById('night'));
 // factory
 const L=[['features',76],['quality',55],['docs',26],['infra',43],['security',0,'category stopped'],['release',0,'quarantined']];let on=true;
-const lanes=document.getElementById('lanes'),st=document.getElementById('st'),big=document.getElementById('big'),out=document.getElementById('out');
+const lanes=document.getElementById('lanes'),st=document.getElementById('st'),out=document.getElementById('out');
 lanes.innerHTML=L.map(([n,p,x],i)=>`<div class="lane" id="l${i}"><b>${n}</b><div class="meter"><i></i></div><small></small></div>`).join('');
 function paint(){L.forEach(([n,p,x],i)=>{const el=document.getElementById('l'+i),dead=!on||!p;el.classList.toggle('dead',dead);el.querySelector('i').style.width=dead?'100%':p+'%';el.querySelector('small').textContent=!on?'STOPPED':x||('ctx '+p+'%')});
- st.textContent=on?'MACHINE ON':'MACHINE OFF';st.className='state '+(on?'on':'stop');big.className='bigred'+(on?'':' off');big.innerHTML=on?'STOP<br>EVERYTHING':'TURN<br>IT BACK ON'}
+ st.textContent=on?'MACHINE ON':'MACHINE OFF';st.className='state '+(on?'on':'stop');}
 setTimeout(paint,300);
 setInterval(()=>{if(!on)return;L.forEach((l,i)=>{if(l[1]){l[1]=l[1]>=90?20:l[1]+Math.round(Math.random()*5);const el=document.getElementById('l'+i);el.querySelector('i').style.width=l[1]+'%';el.querySelector('small').textContent='ctx '+l[1]+'%'}})},2200);
-big.onclick=()=>{on=!on;paint();out.innerHTML=on?'<span class="o">otto_ctl on</span>  the supervisor relaunches the lanes, one by one, with backoff.':'<span class="r">otto_ctl off</span>  marker written. Every lane stops at its next tool call. Nothing is killed mid-write; the supervisor just stops relaunching.'};
 const C={a:['features','docs/api.md','another category\'s file is refused even with a checkout'],b:['quality','tests/new_case.py','own file without a checkout is refused'],c:['features','Tools/OTTO_STOP','removing the stop marker is refused'],d:null,e:['docs','Tools/otto_stop_hook.py','control plane refused even with a checkout']};
 document.querySelectorAll('.cheat button').forEach(b=>b.onclick=()=>{const k=b.dataset.c;
  if(k=='d'){out.innerHTML='<span class="mono">stop hook</span> context 40%, no handoff\n<span class="r">BLOCKED</span>  keep working. Stop at 10%: blocked. Stop at 85% without a handoff: blocked.\n<span class="o">ALLOWED</span>  stop at 85% WITH a rewritten handoff, or at 96%.';return}
